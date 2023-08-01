@@ -1,19 +1,12 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Home from "../components/Home";
 import Login from "../components/Login";
 import { useAuth } from "../contexts/auth";
 import { hours } from '../data';
-
-
-
 import useResource from '../hooks/useResource';
-
 
 export default function startcode() {
   const {resource, loading, createResource, deleteResource, numLocations } = useResource();
- 
-
   const { user } = useAuth();
   return (
     <>
@@ -22,14 +15,12 @@ export default function startcode() {
           <Header />
           <CreateForm onCreate={createResource} />
           <StandList data={resource} loading={loading} onDelete={deleteResource} />
-          
           <Footer numLocations={numLocations} />
         </>)
         : (<Login />)}
     </>
   );
 }
-
 
 function CreateForm({ onCreate }) {
 
@@ -81,12 +72,11 @@ function CreateForm({ onCreate }) {
   );
 }
 
-
 function StandList({ data = [], loading, onDelete }) {
   if (loading) return <p>Loading ...</p>;
 
   return (
-    <div className="flex justify-center mb-4 w-3/5">
+    <div className="flex justify-center mb-4 w-3/5 ml-60">
       <div className="w-full">
         {data.length === 0 ? (
           <h2 className="text-2xl font-bold text-black-600">No Cookie Stands Available</h2>
