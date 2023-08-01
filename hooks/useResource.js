@@ -7,7 +7,7 @@ export default function useResource() {
     const apiUrl = process.env.NEXT_PUBLIC_RESOURCE_URL;
     const {tokens, logout} = useAuth(); 
     const {data, error, mutate} = useSWR([apiUrl,tokens],fetchResource)
-
+    const resource = data;
 
     async function fetchResource(){
         
@@ -76,5 +76,6 @@ export default function useResource() {
         loading : tokens && !error && !data,
         createResource,
         deleteResource,
+        numLocations: resource ? resource.length : 0, 
     }
 }
